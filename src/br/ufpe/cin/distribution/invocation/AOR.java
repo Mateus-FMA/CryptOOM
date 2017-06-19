@@ -3,9 +3,6 @@ package br.ufpe.cin.distribution.invocation;
 import java.io.Serializable;
 import java.net.InetAddress;
 
-/**
- * Created by Ricardo on 19/06/2017.
- */
 public class AOR implements Serializable {
 
     private int id;
@@ -29,8 +26,5 @@ public class AOR implements Serializable {
     public int getPort(){
         return this.port;
     }
-
-
-
 
 }
