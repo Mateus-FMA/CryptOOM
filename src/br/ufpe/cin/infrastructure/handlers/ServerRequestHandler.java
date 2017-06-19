@@ -1,7 +1,10 @@
 package br.ufpe.cin.infrastructure.handlers;
 
-/**
- * Created by Ricardo on 19/06/2017.
- */
+import java.net.InetAddress;
+
+
 public interface ServerRequestHandler {
+    void send(byte[] data);
+
+    byte[] receive();
 }
