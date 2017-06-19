@@ -1,4 +1,4 @@
-package br.ufpe.cin.distribution;
+package br.ufpe.cin.infrastructure.serializer;
 
 import java.io.*;
 
@@ -25,6 +25,6 @@ public final class Marshaller {
   }
 
   public static Object unmarshal(byte[] toUnmarshal) throws IOException, ClassNotFoundException {
-     return (new ObjectInputStream(new ByteArrayInputStream(toUnmarshal))).readObject();
+     return new ObjectInputStream(new ByteArrayInputStream(toUnmarshal)).readObject();
   }
 }
