@@ -1,4 +1,4 @@
-package br.ufpe.cin.infrastructure.serializer;
+package br.ufpe.cin.cryptoom.infrastructure.serializer;
 
 import java.io.*;
 
@@ -9,7 +9,6 @@ import java.io.*;
  * Created by Mateus de Freitas on 17/06/2017.
  */
 public final class Marshaller {
-
   // Since we don't want instances of this class and it is final (cannot declare it as abstract),
   // we define a private constructor to prevent instantiation.
   private Marshaller() {
