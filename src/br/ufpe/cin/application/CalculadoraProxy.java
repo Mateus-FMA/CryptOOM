@@ -2,6 +2,7 @@ package br.ufpe.cin.application;
 
 import br.ufpe.cin.cryptoom.distribution.invocation.AOR;
 import br.ufpe.cin.cryptoom.distribution.invocation.Proxy;
+import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
 import javafx.util.Pair;
 
 /**
@@ -13,11 +14,12 @@ public class CalculadoraProxy extends Proxy {
     }
 
     @SuppressWarnings("unchecked")
-    public void add (Integer a, Integer b) throws Exception {
+    public Integer add (Integer a, Integer b) throws Exception {
         Pair argA = new Pair<Object, Class>(a, Integer.class);
         Pair argB = new Pair<Object, Class>(b, Integer.class);
         Pair<Object, Class>[] args = new Pair[] {argA, argB};
-        invoke("add", args);
+        Termination t = invoke("add", args);
+        return (Integer) t.getResult();
     }
 
     @Override

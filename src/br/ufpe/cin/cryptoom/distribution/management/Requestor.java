@@ -26,9 +26,10 @@ public class Requestor {
         //clientRequestHandler.send(AESCipher.encryptByteArray(Marshaller.marshal(request)));
 
         //TODO reply
+        Message reply = (Message) Marshaller.unmarshal(clientRequestHandler.receive());
         //Message reply = (Message) Marshaller.unmarshal(AESCipher.decryptByteArray(clientRequestHandler.receive()));
-        //return (Termination) reply.body();
+        return (Termination) reply.getBody();
 
-        return null;
+//        return null;
     }
 }

@@ -14,7 +14,8 @@ public class RequestorTester {
 
     public static void main(String[] args) throws Exception {
         Proxy calculadora = new CalculadoraProxy(new AOR(123, InetAddress.getLocalHost(), 50000));
-        ((CalculadoraProxy) calculadora).add(30, 40);
+        Integer i = ((CalculadoraProxy) calculadora).add(30, 40);
+        System.out.println("" + i);
     }
 
 }

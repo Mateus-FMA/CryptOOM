@@ -2,6 +2,7 @@ package br.ufpe.cin.tests.infrastructure.handlers;
 
 import br.ufpe.cin.cryptoom.distribution.requesting.Invocation;
 import br.ufpe.cin.cryptoom.distribution.requesting.Message;
+import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
 import br.ufpe.cin.cryptoom.infrastructure.handlers.ServerRequestHandler;
 import br.ufpe.cin.cryptoom.infrastructure.handlers.TCPServerRequestHandler;
 import br.ufpe.cin.cryptoom.infrastructure.serializer.AESCipher;
@@ -29,7 +30,8 @@ public class ServerRequestHandlerTest {
 //        srh.send(sendData);
         Message m = (Message) Marshaller.unmarshal(receiveData);
         System.out.println(((Invocation)m.getBody()).getMethodName());
-//        System.out.println("Server sent");
+        srh.send(Marshaller.marshal(new Message(new Termination(31))));
+        System.out.println("Server sent");
 
     }
 
