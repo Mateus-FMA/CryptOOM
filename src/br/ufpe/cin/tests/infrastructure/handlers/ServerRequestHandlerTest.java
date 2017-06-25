@@ -1,7 +1,7 @@
-package br.ufpe.cin;
+package br.ufpe.cin.tests.infrastructure.handlers;
 
-import br.ufpe.cin.infrastructure.handlers.ServerRequestHandler;
-import br.ufpe.cin.infrastructure.handlers.TCPServerRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.handlers.ServerRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.handlers.TCPServerRequestHandler;
 
 import java.io.IOException;
 

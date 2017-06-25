@@ -1,9 +1,9 @@
-package br.ufpe.cin.distribution.management;
+package br.ufpe.cin.cryptoom.distribution.management;
 
-import br.ufpe.cin.distribution.requesting.Invocation;
-import br.ufpe.cin.distribution.requesting.Message;
-import br.ufpe.cin.distribution.requesting.Termination;
-import br.ufpe.cin.infrastructure.handlers.ClientRequestHandler;
+import br.ufpe.cin.cryptoom.distribution.requesting.Invocation;
+import br.ufpe.cin.cryptoom.distribution.requesting.Message;
+import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
+import br.ufpe.cin.cryptoom.infrastructure.handlers.ClientRequestHandler;
 
 public class Requestor {
 

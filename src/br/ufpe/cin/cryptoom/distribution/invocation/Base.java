@@ -1,7 +1,7 @@
-package br.ufpe.cin.distribution.invocation;
+package br.ufpe.cin.cryptoom.distribution.invocation;
 
-import br.ufpe.cin.distribution.requesting.Invocation;
-import br.ufpe.cin.distribution.requesting.Termination;
+import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
+import br.ufpe.cin.cryptoom.distribution.requesting.Invocation;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

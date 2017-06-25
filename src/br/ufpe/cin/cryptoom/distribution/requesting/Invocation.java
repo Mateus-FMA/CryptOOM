@@ -1,6 +1,6 @@
-package br.ufpe.cin.distribution.requesting;
+package br.ufpe.cin.cryptoom.distribution.requesting;
 
-import br.ufpe.cin.distribution.invocation.AOR;
+import br.ufpe.cin.cryptoom.distribution.invocation.AOR;
 import javafx.util.Pair;
 
 import java.io.Serializable;

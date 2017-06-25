@@ -1,4 +1,4 @@
-package br.ufpe.cin.distribution.requesting;
+package br.ufpe.cin.cryptoom.distribution.requesting;
 
 import java.io.Serializable;
 

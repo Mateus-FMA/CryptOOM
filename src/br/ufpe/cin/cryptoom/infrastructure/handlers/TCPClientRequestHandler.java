@@ -1,4 +1,4 @@
-package br.ufpe.cin.infrastructure.handlers;
+package br.ufpe.cin.cryptoom.infrastructure.handlers;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

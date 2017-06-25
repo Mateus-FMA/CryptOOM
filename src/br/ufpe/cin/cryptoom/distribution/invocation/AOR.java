@@ -1,4 +1,4 @@
-package br.ufpe.cin.distribution.invocation;
+package br.ufpe.cin.cryptoom.distribution.invocation;
 
 import java.io.Serializable;
 import java.net.InetAddress;

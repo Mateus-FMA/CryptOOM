@@ -1,7 +1,7 @@
-package br.ufpe.cin;
+package br.ufpe.cin.tests.infrastructure.handlers;
 
-import br.ufpe.cin.infrastructure.handlers.ClientRequestHandler;
-import br.ufpe.cin.infrastructure.handlers.TCPClientRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.handlers.ClientRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.handlers.TCPClientRequestHandler;
 
 import java.io.IOException;
 import java.net.InetAddress;

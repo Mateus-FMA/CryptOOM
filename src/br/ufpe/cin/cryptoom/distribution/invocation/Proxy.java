@@ -1,8 +1,8 @@
-package br.ufpe.cin.distribution.invocation;
+package br.ufpe.cin.cryptoom.distribution.invocation;
 
-import br.ufpe.cin.distribution.management.Requestor;
-import br.ufpe.cin.distribution.requesting.Invocation;
-import br.ufpe.cin.distribution.requesting.Termination;
+import br.ufpe.cin.cryptoom.distribution.management.Requestor;
+import br.ufpe.cin.cryptoom.distribution.requesting.Invocation;
+import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
 import javafx.util.Pair;
 
 import java.io.Serializable;
