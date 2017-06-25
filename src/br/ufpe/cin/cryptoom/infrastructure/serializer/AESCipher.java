@@ -4,6 +4,7 @@ import br.ufpe.cin.cryptoom.infrastructure.serializer.exceptions.UninitializedCi
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
+import java.io.Serializable;
 import java.security.*;
 
 /**
@@ -15,65 +16,45 @@ import java.security.*;
  *
  * Created by Mateus de Freitas on 19/06/2017.
  */
-public final class AESCipher {
+public final class AESCipher implements Serializable {
   private static final int KEY_SIZE = 128;
   private static final String CIPHER_SETTINGS = "AES/CBC/PKCS5Padding";
 
-  private static SecureRandom rng = new SecureRandom();
-  private static IvParameterSpec iv;
-  private static SecretKey key;
+  private SecureRandom rng;
+  private IvParameterSpec iv;
+  private SecretKey key;
 
-  static {
+  public AESCipher() throws NoSuchAlgorithmException {
+    rng = new SecureRandom();
+
     // Generate initialization vector.
     byte[] byteIV = new byte[AESCipher.KEY_SIZE >> 3];
     rng.nextBytes(byteIV);
     iv = new IvParameterSpec(byteIV);
 
     // Generate key.
-    try {
-      KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-      keyGen.init(AESCipher.KEY_SIZE);
-      key = keyGen.generateKey();
-    } catch (NoSuchAlgorithmException e) {
-      key = null;
-      e.printStackTrace();
-    }
+    KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+    keyGen.init(AESCipher.KEY_SIZE);
+    key = keyGen.generateKey();
   }
 
-  // Defining constructor as private to prevent instantiation.
-  private AESCipher() {
-
-  }
-
-//  public static void init() throws NoSuchAlgorithmException {
-//    // Generate initialization vector.
-//    byte[] byteIV = new byte[AESCipher.KEY_SIZE >> 3];
-//    rng.nextBytes(byteIV);
-//    iv = new IvParameterSpec(byteIV);
-//
-//    // Generate key.
-//    KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-//    keyGen.init(AESCipher.KEY_SIZE);
-//    key = keyGen.generateKey();
-//  }
-
-  public static byte[] encryptByteArray(byte[] plaintext) throws GeneralSecurityException,
+  public byte[] encryptByteArray(byte[] plaintext) throws GeneralSecurityException,
           UninitializedCipherException {
-    if (AESCipher.key == null || AESCipher.iv == null)
+    if (key == null || iv == null)
       throw new UninitializedCipherException("Need to generate key and initialization vector.");
 
     Cipher cipher = Cipher.getInstance(AESCipher.CIPHER_SETTINGS);
-    cipher.init(Cipher.ENCRYPT_MODE, AESCipher.key, AESCipher.iv, AESCipher.rng);
+    cipher.init(Cipher.ENCRYPT_MODE, key, iv, rng);
     return cipher.doFinal(plaintext);
   }
 
-  public static byte[] decryptByteArray(byte[] ciphertext) throws GeneralSecurityException,
+  public byte[] decryptByteArray(byte[] ciphertext) throws GeneralSecurityException,
           UninitializedCipherException {
-    if (AESCipher.key == null || AESCipher.iv == null)
+    if (key == null || iv == null)
       throw new UninitializedCipherException("Need to generate key and initialization vector.");
 
     Cipher cipher = Cipher.getInstance(AESCipher.CIPHER_SETTINGS);
-    cipher.init(Cipher.DECRYPT_MODE, AESCipher.key, AESCipher.iv);
+    cipher.init(Cipher.DECRYPT_MODE, key, iv);
     return cipher.doFinal(ciphertext);
   }
 }
