@@ -1,4 +1,4 @@
-package br.ufpe.cin;
+package br.ufpe.cin.cryptoom;
 
 public class Main {
   public static void main(String[] args) {
