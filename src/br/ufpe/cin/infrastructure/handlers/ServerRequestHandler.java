@@ -1,10 +1,10 @@
 package br.ufpe.cin.infrastructure.handlers;
 
-import java.net.InetAddress;
-
+import java.io.IOException;
 
 public interface ServerRequestHandler {
-    void send(byte[] data);
+    int getPort();
 
-    byte[] receive();
+    void send(byte[] data) throws IOException;
+    byte[] receive() throws IOException;
 }
