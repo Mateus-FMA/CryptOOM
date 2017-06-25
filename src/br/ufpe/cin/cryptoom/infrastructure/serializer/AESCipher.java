@@ -20,25 +20,42 @@ public final class AESCipher {
   private static final String CIPHER_SETTINGS = "AES/CBC/PKCS5Padding";
 
   private static SecureRandom rng = new SecureRandom();
-  private static IvParameterSpec iv = null;
-  private static SecretKey key = null;
+  private static IvParameterSpec iv;
+  private static SecretKey key;
 
-  // Defining constructor as private to prevent instantiation.
-  private AESCipher() {
-
-  }
-
-  public static void init() throws NoSuchAlgorithmException {
+  static {
     // Generate initialization vector.
     byte[] byteIV = new byte[AESCipher.KEY_SIZE >> 3];
     rng.nextBytes(byteIV);
     iv = new IvParameterSpec(byteIV);
 
     // Generate key.
-    KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-    keyGen.init(AESCipher.KEY_SIZE);
-    key = keyGen.generateKey();
+    try {
+      KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+      keyGen.init(AESCipher.KEY_SIZE);
+      key = keyGen.generateKey();
+    } catch (Exception e) {
+      key = null;
+      e.printStackTrace();
+    }
   }
+
+  // Defining constructor as private to prevent instantiation.
+  private AESCipher() {
+
+  }
+
+//  public static void init() throws NoSuchAlgorithmException {
+//    // Generate initialization vector.
+//    byte[] byteIV = new byte[AESCipher.KEY_SIZE >> 3];
+//    rng.nextBytes(byteIV);
+//    iv = new IvParameterSpec(byteIV);
+//
+//    // Generate key.
+//    KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+//    keyGen.init(AESCipher.KEY_SIZE);
+//    key = keyGen.generateKey();
+//  }
 
   public static byte[] encryptByteArray(byte[] plaintext) throws GeneralSecurityException,
           UninitializedCipherException {

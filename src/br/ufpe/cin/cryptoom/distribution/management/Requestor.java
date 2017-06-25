@@ -4,6 +4,11 @@ import br.ufpe.cin.cryptoom.distribution.requesting.Invocation;
 import br.ufpe.cin.cryptoom.distribution.requesting.Message;
 import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
 import br.ufpe.cin.cryptoom.infrastructure.handlers.ClientRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.handlers.TCPClientRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.serializer.AESCipher;
+import br.ufpe.cin.cryptoom.infrastructure.serializer.Marshaller;
+
+import java.io.IOException;
 
 public class Requestor {
 
@@ -12,14 +17,18 @@ public class Requestor {
     public Requestor() {
     }
 
-    public Termination remoteMethodInvocation(Invocation invocation){
-        //TODO
-        //create new Impl ClientRequestHandler with invocation.getAOR().getPort() and invocation.getAOR().getAddress()
-        //clientRequestHandler = new TCPClientRequestHandler();
+    public Termination invokeRemoteMethod(Invocation invocation) throws Exception {
+        clientRequestHandler = new TCPClientRequestHandler(invocation.getAOR().getAddress(), invocation.getAOR().getPort());
         Message request = new Message(invocation);
-        //clientRequestHandler.send(Chryptographer.crypt(Marshaller.marshall(request));
-        // Message reply = (Message) Marshaller.unmarshall(Cryptographer.decrypt(clientRequestHandler.receive())
-        //return (Termination) reply.body()
+
+        //TODO encrypt
+        clientRequestHandler.send(Marshaller.marshal(request));
+        //clientRequestHandler.send(AESCipher.encryptByteArray(Marshaller.marshal(request)));
+
+        //TODO reply
+        //Message reply = (Message) Marshaller.unmarshal(AESCipher.decryptByteArray(clientRequestHandler.receive()));
+        //return (Termination) reply.body();
+
         return null;
     }
 }
