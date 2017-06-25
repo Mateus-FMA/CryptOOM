@@ -15,7 +15,7 @@ public class SerializerTest {
   public static void main(String[] args) throws Exception {
     TestClass test = new TestClass(42, "Awesome test string. :D");
     System.out.println(test.toString());
-    AESCipher.init();
+//    AESCipher.init();
 
     byte[] marshaledTest = Marshaller.marshal(test);
     System.out.println(Arrays.toString(marshaledTest));
