@@ -15,12 +15,14 @@ public class SerializerTest {
   public static void main(String[] args) throws Exception {
     TestClass test = new TestClass(42, "Awesome test string. :D");
     System.out.println(test.toString());
-    AESCipher.init();
+//    AESCipher cipher = new AESCipher();
 
     byte[] marshaledTest = Marshaller.marshal(test);
     System.out.println(Arrays.toString(marshaledTest));
+//    byte[] ciphertext = cipher.encryptByteArray(marshaledTest);
     byte[] ciphertext = AESCipher.encryptByteArray(marshaledTest);
     System.out.println(Arrays.toString(ciphertext));
+//    byte[] plaintext = cipher.decryptByteArray(ciphertext);
     byte[] plaintext = AESCipher.decryptByteArray(ciphertext);
     System.out.println(Arrays.toString(plaintext));
     TestClass unmarshaledTest = (TestClass) Marshaller.unmarshal(plaintext);
