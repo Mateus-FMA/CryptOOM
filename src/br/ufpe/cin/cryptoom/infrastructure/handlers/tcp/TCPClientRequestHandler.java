@@ -1,4 +1,6 @@
-package br.ufpe.cin.cryptoom.infrastructure.handlers;
+package br.ufpe.cin.cryptoom.infrastructure.handlers.tcp;
+
+import br.ufpe.cin.cryptoom.infrastructure.handlers.ClientRequestHandler;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,9 +23,7 @@ public class TCPClientRequestHandler implements ClientRequestHandler {
     public TCPClientRequestHandler(InetAddress address, int port) throws IOException {
         this.address = address;
         this.port = port;
-        System.out.println("construtor");
         connectionSocket = new Socket(address, port);
-        System.out.println("connectionSocket");
         outToServer = new DataOutputStream(connectionSocket.getOutputStream());
         inFromServer = new DataInputStream(connectionSocket.getInputStream());
     }

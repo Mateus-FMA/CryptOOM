@@ -4,6 +4,8 @@ import br.ufpe.cin.cryptoom.distribution.requesting.Invocation;
 import br.ufpe.cin.cryptoom.distribution.requesting.Message;
 import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
 import br.ufpe.cin.cryptoom.infrastructure.handlers.ClientRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.handlers.tcp.TCPClientRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.serializer.Marshaller;
 
 public class Requestor {
 
@@ -12,14 +14,12 @@ public class Requestor {
     public Requestor() {
     }
 
-    public Termination remoteMethodInvocation(Invocation invocation){
-        //TODO
-        //create new Impl ClientRequestHandler with invocation.getAOR().getPort() and invocation.getAOR().getAddress()
-        //clientRequestHandler = new TCPClientRequestHandler();
+    public Termination remoteMethodInvocation(Invocation invocation) throws Exception {
+        clientRequestHandler = new TCPClientRequestHandler(invocation.getAOR().getAddress(), invocation.getAOR().getPort());
         Message request = new Message(invocation);
-        //clientRequestHandler.send(Chryptographer.crypt(Marshaller.marshall(request));
-        // Message reply = (Message) Marshaller.unmarshall(Cryptographer.decrypt(clientRequestHandler.receive())
-        //return (Termination) reply.body()
-        return null;
+        clientRequestHandler.send(Marshaller.marshal(request));
+        Message reply = (Message) Marshaller.unmarshal(clientRequestHandler.receive());
+
+        return (Termination)reply.getBody();
     }
 }

@@ -1,4 +1,6 @@
-package br.ufpe.cin.cryptoom.infrastructure.handlers;
+package br.ufpe.cin.cryptoom.infrastructure.handlers.tcp;
+
+import br.ufpe.cin.cryptoom.infrastructure.handlers.ServerRequestHandler;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,26 +11,16 @@ import java.net.Socket;
 /**
  * Created by Ricardo on 21/06/2017.
  */
-public class TCPServerRequestHandler implements ServerRequestHandler{
+public class TCPServerRequestHandler implements ServerRequestHandler {
 
-    private int port;
-
-    private ServerSocket welcomeSocket;
     private Socket connectionSocket;
     private DataOutputStream outToClient;
     private DataInputStream inFromClient;
 
-    public TCPServerRequestHandler(int port) throws IOException {
-        this.port = port;
-
-        welcomeSocket = new ServerSocket(port);
-        connectionSocket = welcomeSocket.accept();
+    public TCPServerRequestHandler(Socket connectionSocket) throws IOException {
+        this.connectionSocket = connectionSocket;
         outToClient = new DataOutputStream(connectionSocket.getOutputStream());
         inFromClient = new DataInputStream(connectionSocket.getInputStream());
-    }
-
-    public int getPort() {
-        return port;
     }
 
     public void send(byte[] data) throws IOException {

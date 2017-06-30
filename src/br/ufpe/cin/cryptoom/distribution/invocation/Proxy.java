@@ -14,16 +14,14 @@ public abstract class Proxy implements Serializable {
         this.aor = aor;
     }
 
-    protected Termination invoke(String methodName, Pair<Object, Class>[] arguments) {
+    protected Termination invoke(String methodName, Pair<Object, Class>[] arguments) throws Exception {
         Invocation invocation = new Invocation(methodName, arguments, aor);
-        //TODO incomplete requestor
         Termination termination = new Requestor().remoteMethodInvocation(invocation);
-        // in Proxy Impl call .getResult
         return termination;
     }
 
     public AOR getAOR() {
         return this.aor;
     }
-    abstract String getIdentifier();
+    protected abstract String getIdentifier();
 }
