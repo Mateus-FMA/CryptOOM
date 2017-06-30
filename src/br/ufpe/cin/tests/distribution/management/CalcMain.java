@@ -1,4 +1,4 @@
-package br.ufpe.cin.tests.infrastructure.management;
+package br.ufpe.cin.tests.distribution.management;
 
 /**
  * Created by Guilherme on 29/06/2017.
@@ -8,7 +8,7 @@ public class CalcMain {
         CalcProxy c = new CalcProxy(InvokerTest.CALCULATOR_AOR);
         while(true) {
             System.out.println(c.add(1, 2));
-//            Thread.sleep(100);
+            Thread.sleep(100);
         }
     }
 }
