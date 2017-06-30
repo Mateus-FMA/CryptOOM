@@ -7,6 +7,7 @@ import br.ufpe.cin.cryptoom.distribution.requesting.Message;
 import br.ufpe.cin.cryptoom.distribution.requesting.Termination;
 import br.ufpe.cin.cryptoom.infrastructure.handlers.ServerRequestHandler;
 import br.ufpe.cin.cryptoom.infrastructure.handlers.tcp.TCPServerRequestHandler;
+import br.ufpe.cin.cryptoom.infrastructure.serializer.AESCipher;
 import br.ufpe.cin.cryptoom.infrastructure.serializer.Marshaller;
 
 import java.io.IOException;
@@ -72,11 +73,11 @@ public class Invoker {
         @Override
         public void run() {
             try {
-                Message message = (Message) Marshaller.unmarshal(srh.receive());
+                Message message = (Message) Marshaller.unmarshal(AESCipher.decryptByteArray(srh.receive()));
                 Invocation invocation = (Invocation) message.getBody();
                 Termination termination =  services.get(invocation.getAOR()).processAndRunRemoteInvocation(invocation);
                 Message reply = new Message(termination);
-                srh.send(Marshaller.marshal(reply));
+                srh.send(AESCipher.encryptByteArray(Marshaller.marshal(reply)));
             } catch (Exception e) {
                 //change exception
                 e.printStackTrace();

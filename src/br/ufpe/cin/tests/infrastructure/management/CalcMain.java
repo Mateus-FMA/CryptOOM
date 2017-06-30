@@ -1,4 +1,4 @@
-package br.ufpe.cin.tests.infrastructure.managment;
+package br.ufpe.cin.tests.infrastructure.management;
 
 /**
  * Created by Guilherme on 29/06/2017.

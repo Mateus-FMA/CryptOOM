@@ -1,4 +1,4 @@
-package br.ufpe.cin.tests;
+package br.ufpe.cin.tests.infrastructure.serializer;
 
 import java.io.Serializable;
 

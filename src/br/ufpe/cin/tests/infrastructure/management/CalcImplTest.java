@@ -1,4 +1,4 @@
-package br.ufpe.cin.tests.infrastructure.managment;
+package br.ufpe.cin.tests.infrastructure.management;
 
 
 import br.ufpe.cin.cryptoom.distribution.invocation.AOR;

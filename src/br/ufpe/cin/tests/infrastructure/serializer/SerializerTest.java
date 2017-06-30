@@ -2,7 +2,6 @@ package br.ufpe.cin.tests.infrastructure.serializer;
 
 import br.ufpe.cin.cryptoom.infrastructure.serializer.AESCipher;
 import br.ufpe.cin.cryptoom.infrastructure.serializer.Marshaller;
-import br.ufpe.cin.tests.TestClass;
 
 import java.util.Arrays;
 

@@ -29,7 +29,7 @@ public abstract class Base {
         } catch (NoSuchMethodException e) {
             throw new RuntimeException("Method with name and signature provided does not exist");
         } catch (InvocationTargetException | IllegalAccessException e) {
-            throw new RuntimeException("Illegal access managment or TargetException");
+            throw new RuntimeException("Illegal access management or TargetException");
         }
 
     }
