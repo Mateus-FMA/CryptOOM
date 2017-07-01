@@ -38,5 +38,5 @@ public abstract class Base {
         return aor;
     }
 
-    protected abstract String getIdentifier();
+    public abstract String getIdentifier();
 }

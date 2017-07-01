@@ -23,5 +23,5 @@ public abstract class Proxy implements Serializable {
     public AOR getAOR() {
         return this.aor;
     }
-    protected abstract String getIdentifier();
+    public abstract String getIdentifier();
 }
