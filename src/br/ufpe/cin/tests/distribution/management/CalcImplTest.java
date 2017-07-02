@@ -31,7 +31,7 @@ public class CalcImplTest extends Base {
     }
 
     @Override
-    protected String getIdentifier() {
+    public String getIdentifier() {
         return "Calc";
     }
 }

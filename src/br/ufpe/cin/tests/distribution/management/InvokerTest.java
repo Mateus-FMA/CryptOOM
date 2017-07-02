@@ -10,7 +10,7 @@ import java.net.InetAddress;
  * Created by Guilherme on 29/06/2017.
  */
 public class InvokerTest {
-    static AOR CALCULATOR_AOR;
+    public static AOR CALCULATOR_AOR;
 
     static {
         AOR calculatorAor = null;

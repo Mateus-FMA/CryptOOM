@@ -45,7 +45,7 @@ public class Invoker {
     private class RequestListener implements Runnable {
         private AOR aor;
 
-        public RequestListener(AOR aor) {
+         RequestListener(AOR aor) {
             this.aor = aor;
         }
 
@@ -66,7 +66,7 @@ public class Invoker {
     private class RunRequest implements Runnable {
         private ServerRequestHandler srh;
 
-        public RunRequest(ServerRequestHandler srh) {
+         RunRequest(ServerRequestHandler srh) {
             this.srh = srh;
         }
 

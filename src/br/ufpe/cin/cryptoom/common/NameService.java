@@ -15,24 +15,22 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * Created by Mateus de Freitas on 01/07/2017.
  */
-public class ObjectNameService implements Registry {
+public class NameService extends Base implements INameService {
   private Map<String, Proxy> registry;
 
-  public ObjectNameService() {
+  public NameService(AOR aor) {
+    super(aor);
     this.registry = new ConcurrentHashMap<>();
   }
 
   @Override
-  public void bind(Proxy remoteObjProxy) {
-    Objects.requireNonNull(remoteObjProxy, "Cannot bind a null Proxy.");
-    this.registry.put(remoteObjProxy.getIdentifier(), remoteObjProxy);
+  public String getIdentifier() {
+    return "Name Service Implementation";
   }
 
   @Override
-  public void rebind(String identifier, Proxy remoteObjProxy) {
-    Objects.requireNonNull(remoteObjProxy, "Cannot rebind a null Proxy.");
-    this.registry.remove(identifier);
-    this.registry.put(remoteObjProxy.getIdentifier(), remoteObjProxy);
+  public void bind(String identifier, Proxy proxy) {
+    this.registry.put(identifier, proxy);
   }
 
   @Override
@@ -45,8 +43,4 @@ public class ObjectNameService implements Registry {
     return this.registry.get(identifier);
   }
 
-  @Override
-  public ArrayList<String> listServices() {
-    return new ArrayList<>(this.registry.keySet());
-  }
 }

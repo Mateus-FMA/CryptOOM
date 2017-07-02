@@ -9,18 +9,20 @@ import javafx.util.Pair;
  * Created by Guilherme on 29/06/2017.
  */
 public class CalcProxy extends Proxy {
+
     public CalcProxy(AOR aor) {
         super(aor);
     }
 
     @SuppressWarnings("unchecked")
     public Integer add (Integer a, Integer b) throws Exception {
-        Termination t = invoke("add", new Pair[]{ new Pair<>(a, Integer.class), new Pair<>(b, Integer.class)});
+        class Local {};
+        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Integer.class), new Pair<>(b, Integer.class)});
         return (Integer) t.getResult();
     }
 
     @Override
-    protected String getIdentifier() {
+     public String getIdentifier() {
         return "Calculator Proxy";
     }
 }
