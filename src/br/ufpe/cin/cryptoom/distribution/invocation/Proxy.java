@@ -14,9 +14,14 @@ public abstract class Proxy implements Serializable {
         this.aor = aor;
     }
 
-    protected Termination invoke(String methodName, Pair<Object, Class>[] arguments) throws Exception {
+    protected Termination invoke(String methodName, Pair<Object, Class>[] arguments) {
         Invocation invocation = new Invocation(methodName, arguments, aor);
-        Termination termination = new Requestor().remoteMethodInvocation(invocation);
+        Termination termination = null;
+        try {
+            termination = new Requestor().remoteMethodInvocation(invocation);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return termination;
     }
 

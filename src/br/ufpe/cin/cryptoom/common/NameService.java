@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Implements the local name service. Client and server sides of a distributed system must call
+ * Implements the local name service. CalculatorClient and server sides of a distributed system must call
  * these functions from a Proxy.
  *
  * Created by Mateus de Freitas on 01/07/2017.

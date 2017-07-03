@@ -11,7 +11,7 @@ import java.net.InetAddress;
 
 public class NameServiceClientTest {
     public static void main(String[] args) throws Exception {
-        NameServiceProxy nsp = new NameServiceProxy(InetAddress.getLocalHost(), 49000);
+        NameServiceProxy nsp = new NameServiceProxy(InetAddress.getLocalHost(), 40000);
 
         //server part, just testing
         CalcProxy c = new CalcProxy(InvokerTest.CALCULATOR_AOR);
