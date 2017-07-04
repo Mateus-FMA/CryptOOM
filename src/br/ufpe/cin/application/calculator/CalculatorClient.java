@@ -14,9 +14,9 @@ public class CalculatorClient {
         NameServiceProxy nsp = new NameServiceProxy(InetAddress.getLocalHost(), 40000);
 
         Proxy calculatorProxy = nsp.lookup("calculator");
-
+        float a=0,b=0;
         while(true) {
-            System.out.println(((CalculatorProxy)calculatorProxy).add(3f, 4f));
+            System.out.println(((CalculatorProxy)calculatorProxy).add(a++, b++));
             //Thread.sleep(100);
         }
 

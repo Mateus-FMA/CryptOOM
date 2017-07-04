@@ -13,6 +13,8 @@ import br.ufpe.cin.cryptoom.infrastructure.serializer.Marshaller;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.security.GeneralSecurityException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -69,7 +71,7 @@ public class Invoker {
     private class RunRequest implements Runnable {
         private ServerRequestHandler srh;
 
-         RunRequest(ServerRequestHandler srh) {
+        RunRequest(ServerRequestHandler srh) {
             this.srh = srh;
         }
 
@@ -78,12 +80,13 @@ public class Invoker {
             try {
                 Message message = (Message) Marshaller.unmarshal(AESCipher.decryptByteArray(srh.receive()));
                 Invocation invocation = (Invocation) message.getBody();
-                Termination termination =  services.get(invocation.getAOR()).processAndRunRemoteInvocation(invocation);
+                Termination termination = services.get(invocation.getAOR()).processAndRunRemoteInvocation(invocation);
                 Message reply = new Message(termination);
                 srh.send(AESCipher.encryptByteArray(Marshaller.marshal(reply)));
                 srh.close();
+            } catch (SocketException e) {
+                //client disconnection, eg.
             } catch (Exception e) {
-                //change exception
                 e.printStackTrace();
             }
         }
