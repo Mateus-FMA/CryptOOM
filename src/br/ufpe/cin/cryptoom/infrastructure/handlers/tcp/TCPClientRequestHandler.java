@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
@@ -18,14 +19,12 @@ public class TCPClientRequestHandler implements ClientRequestHandler {
 
     private Socket connectionSocket;
     private DataOutputStream outToServer;
-    private DataInputStream inFromClient;
+    private DataInputStream inFromServer;
 
     public TCPClientRequestHandler(InetAddress address, int port) throws IOException {
         this.address = address;
         this.port = port;
-        connectionSocket = new Socket(address, port);
-        outToServer = new DataOutputStream(connectionSocket.getOutputStream());
-        inFromClient = new DataInputStream(connectionSocket.getInputStream());
+        connectionSocket = new Socket();
     }
 
     public InetAddress getAddress() {
@@ -38,23 +37,29 @@ public class TCPClientRequestHandler implements ClientRequestHandler {
 
     @Override
     public void close() throws IOException {
-        inFromClient.close();
+        inFromServer.close();
         outToServer.close();
-
         connectionSocket.close();
     }
 
     public void send(byte[] data) throws IOException {
+        estabilishConnection();
         int dataLength = data.length;
         outToServer.writeInt(dataLength);
         outToServer.write(data, 0, dataLength);
         outToServer.flush();
     }
 
+    private void estabilishConnection()throws IOException{
+        connectionSocket.connect(new InetSocketAddress(address, port));
+        outToServer = new DataOutputStream(connectionSocket.getOutputStream());
+        inFromServer = new DataInputStream(connectionSocket.getInputStream());
+    }
+
     public byte[] receive() throws IOException {
-        int dataLength = inFromClient.readInt();
+        int dataLength = inFromServer.readInt();
         byte[] data = new byte[dataLength];
-        inFromClient.read(data, 0, dataLength);
+        inFromServer.read(data, 0, dataLength);
 
         return data;
     }

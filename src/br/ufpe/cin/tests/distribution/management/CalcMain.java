@@ -7,7 +7,7 @@ public class CalcMain {
     public static void main(String[] args) throws Exception {
         CalcProxy c = new CalcProxy(InvokerTest.CALCULATOR_AOR);
         while(true) {
-            System.out.println(c.add(1, 2));
+            System.out.println(c.add(1f, 2f));
             Thread.sleep(100);
         }
     }

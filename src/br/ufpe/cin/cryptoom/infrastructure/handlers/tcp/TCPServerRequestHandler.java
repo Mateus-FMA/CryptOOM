@@ -5,7 +5,6 @@ import br.ufpe.cin.cryptoom.infrastructure.handlers.ServerRequestHandler;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -14,26 +13,26 @@ import java.net.Socket;
 public class TCPServerRequestHandler implements ServerRequestHandler {
 
     private Socket connectionSocket;
-    private DataOutputStream outToServer;
+    private DataOutputStream outToClient;
     private DataInputStream inFromClient;
 
     public TCPServerRequestHandler(Socket connectionSocket) throws IOException {
         this.connectionSocket = connectionSocket;
-        outToServer = new DataOutputStream(connectionSocket.getOutputStream());
+        outToClient = new DataOutputStream(connectionSocket.getOutputStream());
         inFromClient = new DataInputStream(connectionSocket.getInputStream());
     }
 
     public void close() throws IOException {
-        outToServer.close();
+        outToClient.close();
         inFromClient.close();
         connectionSocket.close();
     }
 
     public void send(byte[] data) throws IOException {
         int dataLength = data.length;
-        outToServer.writeInt(dataLength);
-        outToServer.write(data);
-        outToServer.flush();
+        outToClient.writeInt(dataLength);
+        outToClient.write(data);
+        outToClient.flush();
     }
 
     public byte[] receive() throws IOException {
