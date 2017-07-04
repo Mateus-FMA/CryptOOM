@@ -1,15 +1,12 @@
 package br.ufpe.cin.application.calculator;
 
+import br.ufpe.cin.application.calculator.middlewareSupport.CalculatorImpl;
 import br.ufpe.cin.application.calculator.middlewareSupport.CalculatorProxy;
 import br.ufpe.cin.cryptoom.common.NameServiceProxy;
 import br.ufpe.cin.cryptoom.distribution.invocation.AOR;
 import br.ufpe.cin.cryptoom.distribution.invocation.Base;
 import br.ufpe.cin.cryptoom.distribution.management.Invoker;
-import br.ufpe.cin.tests.distribution.management.CalcImplTest;
-import br.ufpe.cin.tests.distribution.management.CalcProxy;
-import br.ufpe.cin.tests.distribution.management.InvokerTest;
 
-import java.io.IOException;
 import java.net.InetAddress;
 
 /**
@@ -28,7 +25,7 @@ public class CalculatorServer {
 
     public static void main(String[] args) throws  Exception{
         System.out.println("Creating Calculator Implementation instance");
-        Base calculatorImpl = new CalcImplTest(CALCULATOR_AOR);
+        Base calculatorImpl = new CalculatorImpl(CALCULATOR_AOR);
         Invoker instance = Invoker.getInstance();
         System.out.println("Now binding in its invoker");
         instance.bindService(calculatorImpl);

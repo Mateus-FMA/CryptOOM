@@ -18,14 +18,14 @@ public class TCPClientRequestHandler implements ClientRequestHandler {
 
     private Socket connectionSocket;
     private DataOutputStream outToServer;
-    private DataInputStream inFromServer;
+    private DataInputStream inFromClient;
 
     public TCPClientRequestHandler(InetAddress address, int port) throws IOException {
         this.address = address;
         this.port = port;
         connectionSocket = new Socket(address, port);
         outToServer = new DataOutputStream(connectionSocket.getOutputStream());
-        inFromServer = new DataInputStream(connectionSocket.getInputStream());
+        inFromClient = new DataInputStream(connectionSocket.getInputStream());
     }
 
     public InetAddress getAddress() {
@@ -36,6 +36,14 @@ public class TCPClientRequestHandler implements ClientRequestHandler {
         return port;
     }
 
+    @Override
+    public void close() throws IOException {
+        inFromClient.close();
+        outToServer.close();
+
+        connectionSocket.close();
+    }
+
     public void send(byte[] data) throws IOException {
         int dataLength = data.length;
         outToServer.writeInt(dataLength);
@@ -44,13 +52,9 @@ public class TCPClientRequestHandler implements ClientRequestHandler {
     }
 
     public byte[] receive() throws IOException {
-        int dataLength = inFromServer.readInt();
+        int dataLength = inFromClient.readInt();
         byte[] data = new byte[dataLength];
-        inFromServer.read(data, 0, dataLength);
-
-        outToServer.close();
-        inFromServer.close();
-        connectionSocket.close();
+        inFromClient.read(data, 0, dataLength);
 
         return data;
     }

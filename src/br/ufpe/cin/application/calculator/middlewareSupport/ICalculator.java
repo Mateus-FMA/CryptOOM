@@ -4,11 +4,11 @@ package br.ufpe.cin.application.calculator.middlewareSupport;
  * Created by Guilherme on 03/07/2017.
  */
 public interface ICalculator {
-    Integer add(Integer a, Integer b);
+    Float add(Float a, Float b);
 
-    Integer sub(Integer a, Integer b);
+    Float sub(Float a, Float b);
 
-    Integer mult(Integer a, Integer b);
+    Float mult(Float a, Float b);
 
-    Integer div(Integer a, Integer b);
+    Float div(Float a, Float b);
 }

@@ -45,7 +45,7 @@ public class Invoker {
     private class RequestListener implements Runnable {
         private AOR aor;
 
-         RequestListener(AOR aor) {
+        RequestListener(AOR aor) {
             this.aor = aor;
         }
 
@@ -55,9 +55,12 @@ public class Invoker {
                 ServerSocket welcomeSocket = new ServerSocket(aor.getPort(), 50, aor.getAddress());
                 while (true) {
                     Socket connectionSocket = welcomeSocket.accept();
-                    new Thread(new RunRequest(new TCPServerRequestHandler(connectionSocket))).start();
+                    Thread t = new Thread(new RunRequest(new TCPServerRequestHandler(connectionSocket)));
+
+                    t.start();
+                    t.join();
                 }
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -78,6 +81,7 @@ public class Invoker {
                 Termination termination =  services.get(invocation.getAOR()).processAndRunRemoteInvocation(invocation);
                 Message reply = new Message(termination);
                 srh.send(AESCipher.encryptByteArray(Marshaller.marshal(reply)));
+                srh.close();
             } catch (Exception e) {
                 //change exception
                 e.printStackTrace();

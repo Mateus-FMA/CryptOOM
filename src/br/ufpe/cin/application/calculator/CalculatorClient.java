@@ -16,8 +16,8 @@ public class CalculatorClient {
         Proxy calculatorProxy = nsp.lookup("calculator");
 
         while(true) {
-            System.out.println(((CalculatorProxy)calculatorProxy).add(3,4));
-            Thread.sleep(100);
+            System.out.println(((CalculatorProxy)calculatorProxy).add(3f, 4f));
+            //Thread.sleep(100);
         }
 
     }

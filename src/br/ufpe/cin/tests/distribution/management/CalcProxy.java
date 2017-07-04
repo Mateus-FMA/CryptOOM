@@ -15,10 +15,10 @@ public class CalcProxy extends Proxy {
     }
 
     @SuppressWarnings("unchecked")
-    public Integer add (Integer a, Integer b) throws Exception {
-        class Local {};
-        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Integer.class), new Pair<>(b, Integer.class)});
-        return (Integer) t.getResult();
+    public Float add (Float a, Float b) throws Exception {
+        class Local {}
+        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Float.class), new Pair<>(b, Float.class)});
+        return (Float) t.getResult();
     }
 
     @Override

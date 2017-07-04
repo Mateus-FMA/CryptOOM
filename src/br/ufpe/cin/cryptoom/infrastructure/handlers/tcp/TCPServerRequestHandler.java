@@ -14,24 +14,26 @@ import java.net.Socket;
 public class TCPServerRequestHandler implements ServerRequestHandler {
 
     private Socket connectionSocket;
-    private DataOutputStream outToClient;
+    private DataOutputStream outToServer;
     private DataInputStream inFromClient;
 
     public TCPServerRequestHandler(Socket connectionSocket) throws IOException {
         this.connectionSocket = connectionSocket;
-        outToClient = new DataOutputStream(connectionSocket.getOutputStream());
+        outToServer = new DataOutputStream(connectionSocket.getOutputStream());
         inFromClient = new DataInputStream(connectionSocket.getInputStream());
+    }
+
+    public void close() throws IOException {
+        outToServer.close();
+        inFromClient.close();
+        connectionSocket.close();
     }
 
     public void send(byte[] data) throws IOException {
         int dataLength = data.length;
-        outToClient.writeInt(dataLength);
-        outToClient.write(data);
-        outToClient.flush();
-
-        outToClient.close();
-        inFromClient.close();
-        connectionSocket.close();
+        outToServer.writeInt(dataLength);
+        outToServer.write(data);
+        outToServer.flush();
     }
 
     public byte[] receive() throws IOException {

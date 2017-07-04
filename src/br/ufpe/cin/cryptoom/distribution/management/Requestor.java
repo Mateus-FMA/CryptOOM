@@ -20,6 +20,7 @@ public class Requestor {
         Message request = new Message(invocation);
         clientRequestHandler.send(AESCipher.encryptByteArray(Marshaller.marshal(request)));
         Message reply = (Message) Marshaller.unmarshal(AESCipher.decryptByteArray(clientRequestHandler.receive()));
+        clientRequestHandler.close();
 
         return (Termination)reply.getBody();
     }

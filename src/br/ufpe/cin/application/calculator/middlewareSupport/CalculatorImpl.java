@@ -17,22 +17,20 @@ public class CalculatorImpl extends Base implements ICalculator {
     }
 
     @Override
-    public Integer add(Integer a, Integer b) {
+    public Float add(Float a, Float b) {
         return a+b;
     }
 
     @Override
-    public Integer sub(Integer a, Integer b) {
-        return a-b;
-    }
+    public Float sub(Float a, Float b) { return a-b; }
 
     @Override
-    public Integer mult(Integer a, Integer b) {
+    public Float mult(Float a, Float b) {
         return a*b;
     }
 
     @Override
-    public Integer div(Integer a, Integer b) {
+    public Float div(Float a, Float b) {
         return a/b;
     }
 }

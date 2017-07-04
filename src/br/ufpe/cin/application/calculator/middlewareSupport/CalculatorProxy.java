@@ -20,33 +20,33 @@ public class CalculatorProxy extends Proxy implements ICalculator {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Integer add(Integer a, Integer b) {
-        class Local {};
-        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Integer.class), new Pair<>(b, Integer.class)});
-        return (Integer) t.getResult();
+    public Float add(Float a, Float b) {
+        class Local {}
+        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Float.class), new Pair<>(b, Float.class)});
+        return (Float) t.getResult();
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Integer sub(Integer a, Integer b) {
-        class Local {};
-        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Integer.class), new Pair<>(b, Integer.class)});
-        return (Integer) t.getResult();
+    public Float sub(Float a, Float b) {
+        class Local {}
+        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Float.class), new Pair<>(b, Float.class)});
+        return (Float) t.getResult();
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Integer mult(Integer a, Integer b) {
-        class Local {};
-        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Integer.class), new Pair<>(b, Integer.class)});
-        return (Integer) t.getResult();
+    public Float mult(Float a, Float b) {
+        class Local {}
+        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Float.class), new Pair<>(b, Float.class)});
+        return (Float) t.getResult();
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Integer div(Integer a, Integer b) {
-        class Local {};
-        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Integer.class), new Pair<>(b, Integer.class)});
-        return (Integer) t.getResult();
+    public Float div(Float a, Float b) {
+        class Local {}
+        Termination t = invoke(Local.class.getEnclosingMethod().getName(), new Pair[]{ new Pair<>(a, Float.class), new Pair<>(b, Float.class)});
+        return (Float) t.getResult();
     }
 }

@@ -26,7 +26,7 @@ public class CalcImplTest extends Base {
         System.out.println(t.getResult());
     }
 
-    public Integer add(Integer a, Integer b) {
+    public Float add(Float a, Float b) {
         return a + b;
     }
 
