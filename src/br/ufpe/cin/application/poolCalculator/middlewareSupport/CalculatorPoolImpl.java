@@ -16,12 +16,15 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
 
   private class Calculator {
     ReentrantLock lock;
+    int id;
 
-    Calculator() {
+    Calculator(int id) {
+      this.id = id;
       lock = new ReentrantLock();
     }
 
     float add(float a, float b) {
+      System.out.println("calculator id: " + this.id);
       float result = a + b;
       lock.unlock();
 
@@ -29,6 +32,7 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
     }
 
     float sub(float a, float b) {
+      System.out.println("calculator id: " + this.id);
       float result = a - b;
       lock.unlock();
 
@@ -36,6 +40,7 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
     }
 
     float mult(float a, float b) {
+      System.out.println("calculator id: " + this.id);
       float result = a * b;
       lock.unlock();
 
@@ -43,6 +48,7 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
     }
 
     float div(float a, float b) {
+      System.out.println("calculator id: " + this.id);
       float result = a / b;
       lock.unlock();
 
@@ -52,7 +58,7 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
 
   public CalculatorPoolImpl(AOR aor) {
     super(aor);
-    pool = IntStream.range(0, 10).mapToObj(index -> new Calculator()).collect(Collectors.toList());
+    pool = IntStream.range(0, 10).mapToObj(index -> new Calculator(index)).collect(Collectors.toList());
   }
 
   @Override
