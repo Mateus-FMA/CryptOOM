@@ -16,7 +16,7 @@ public class CalculatorPoolProxy extends Proxy implements ICalculatorPool {
 
   @Override
   public String getIdentifier() {
-    return "Calculator Proxy";
+    return "Calculator Pool Proxy";
   }
 
   @Override

@@ -38,7 +38,7 @@ public class CalculatorPoolServer {
     //server part, just testing
     CalculatorPoolProxy calculatorProxy = new CalculatorPoolProxy(CALCULATOR_AOR);
     System.out.println("binding calculator proxy in naming service...");
-    nsp.bind("calculator", calculatorProxy);
+    nsp.bind("calculator_pool", calculatorProxy);
     System.out.println("Proxy binded");
 
     //force the program waiting

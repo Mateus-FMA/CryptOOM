@@ -57,12 +57,9 @@ public class Invoker {
                 ServerSocket welcomeSocket = new ServerSocket(aor.getPort(), 50, aor.getAddress());
                 while (true) {
                     Socket connectionSocket = welcomeSocket.accept();
-                    Thread t = new Thread(new RunRequest(new TCPServerRequestHandler(connectionSocket)));
-
-                    t.start();
-                    t.join();
+                    new Thread(new RunRequest(new TCPServerRequestHandler(connectionSocket))).start();
                 }
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

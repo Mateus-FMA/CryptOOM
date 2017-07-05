@@ -13,7 +13,7 @@ public class CalculatorPoolClient {
   public static void main(String[] args) throws Exception {
     NameServiceProxy nsp = new NameServiceProxy(InetAddress.getLocalHost(), 40000);
 
-    Proxy calculatorProxy = nsp.lookup("calculator");
+    Proxy calculatorProxy = nsp.lookup("calculator_pool");
     float a=0,b=0;
     while(true) {
       System.out.println(((CalculatorPoolProxy)calculatorProxy).add(a++, b++));

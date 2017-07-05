@@ -3,7 +3,6 @@ package br.ufpe.cin.application.poolCalculator.middlewareSupport;
 import br.ufpe.cin.cryptoom.distribution.invocation.AOR;
 import br.ufpe.cin.cryptoom.distribution.invocation.Base;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
@@ -26,13 +25,6 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
       lock.lock();
       float result = a + b;
       lock.unlock();
-//      try {
-        //Thread.sleep(100000000);
-//      } catch (Exception e) {
-//        System.out.println("Bla");
-//      } finally {
-//        lock.unlock();
-//      }
 
       return result;
     }
@@ -64,12 +56,7 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
 
   public CalculatorPoolImpl(AOR aor) {
     super(aor);
-    //pool = IntStream.range(0, 10).mapToObj(index -> new Calculator()).collect(Collectors.toList());
-    pool = new ArrayList<>();
-
-    for (int i = 0; i < 10; ++i) {
-      pool.add(new Calculator());
-    }
+    pool = IntStream.range(0, 10).mapToObj(index -> new Calculator()).collect(Collectors.toList());
   }
 
   @Override
@@ -79,23 +66,10 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
 
   @Override
   public Float add(Float a, Float b) throws Exception {
-//    Calculator c = pool.stream()
-//            .filter(calc -> calc.lock.tryLock())
-//            .findFirst()
-//            .orElseThrow(() -> new Exception("Cannot find a Calculator."));
-    Calculator c = null;
-
-    for (int i = 0; i < pool.size(); ++i) {
-      if (!pool.get(i).lock.isLocked()) {
-        c = pool.get(i);
-        System.out.println("Calculator " + i + " is being used...");
-        break;
-      }
-    }
-
-    if (c == null) {
-      throw new Exception("Cannot find a Calculator.");
-    }
+    Calculator c = pool.stream()
+            .filter(calc -> calc.lock.tryLock())
+            .findFirst()
+            .orElseThrow(() -> new Exception("Cannot find a Calculator."));
 
     return c.add(a, b);
   }
