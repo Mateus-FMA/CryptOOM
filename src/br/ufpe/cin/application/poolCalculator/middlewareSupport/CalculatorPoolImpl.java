@@ -22,7 +22,6 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
     }
 
     float add(float a, float b) {
-      lock.lock();
       float result = a + b;
       lock.unlock();
 
@@ -30,7 +29,6 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
     }
 
     float sub(float a, float b) {
-      lock.lock();
       float result = a - b;
       lock.unlock();
 
@@ -38,7 +36,6 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
     }
 
     float mult(float a, float b) {
-      lock.lock();
       float result = a * b;
       lock.unlock();
 
@@ -46,7 +43,6 @@ public class CalculatorPoolImpl extends Base implements ICalculatorPool {
     }
 
     float div(float a, float b) {
-      lock.lock();
       float result = a / b;
       lock.unlock();
 
