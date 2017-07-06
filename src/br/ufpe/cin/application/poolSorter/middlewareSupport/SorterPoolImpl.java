@@ -26,7 +26,7 @@ public class SorterPoolImpl extends Base implements ISorterPool {
         }
 
         ArrayList<Integer> sort(ArrayList<Integer> list) {
-            System.out.println("calculator id: " + this.id);
+            System.out.println("Sorter id: " + this.id);
             Collections.sort(list);
             lock.unlock();
 
