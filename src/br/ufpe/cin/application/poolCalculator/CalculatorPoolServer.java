@@ -13,11 +13,11 @@ import java.net.InetAddress;
  * Created by Guilherme on 03/07/2017.
  */
 public class CalculatorPoolServer {
-  public static AOR CALCULATOR_AOR;
+   static AOR POOL_CALCULATOR_AOR;
 
   static {
     try {
-      CALCULATOR_AOR = new AOR(1, InetAddress.getLocalHost(), 50001);
+      POOL_CALCULATOR_AOR = new AOR(1, InetAddress.getLocalHost(), 50001);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -25,19 +25,19 @@ public class CalculatorPoolServer {
 
   public static void main(String[] args) throws  Exception{
     System.out.println("Creating Calculator Implementation instance");
-    Base calculatorImpl = new CalculatorPoolImpl(CALCULATOR_AOR);
+    Base calculatorImpl = new CalculatorPoolImpl(POOL_CALCULATOR_AOR);
     Invoker instance = Invoker.getInstance();
     System.out.println("Now binding in its invoker");
     instance.bindService(calculatorImpl);
     instance.start();
-    System.out.println("Now Calculator is ready to get requests");
+    System.out.println("Now Calculator Pool is ready to get requests");
 
     //creating proxy in Naming Service
     NameServiceProxy nsp = new NameServiceProxy(InetAddress.getLocalHost(), 40000);
 
     //server part, just testing
-    CalculatorPoolProxy calculatorProxy = new CalculatorPoolProxy(CALCULATOR_AOR);
-    System.out.println("binding calculator proxy in naming service...");
+    CalculatorPoolProxy calculatorProxy = new CalculatorPoolProxy(POOL_CALCULATOR_AOR);
+    System.out.println("binding calculator pool proxy in naming service...");
     nsp.bind("calculator_pool", calculatorProxy);
     System.out.println("Proxy binded");
 
